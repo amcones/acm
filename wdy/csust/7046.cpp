@@ -12,6 +12,7 @@ struct node { //存每个区间的加数情况
     int l, r;
     int add;
 };
+//测试
 vector<node> temp; //存多出来的区间
 vector<node> vec; //存整个数组所有的加数情况
 signed main()
