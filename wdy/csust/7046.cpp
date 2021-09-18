@@ -8,15 +8,12 @@ const int maxn = 1e7 + 5, inf = 0x3f3f3f3f, mod = 1e9 + 7;
 int n, k;
 int a[maxn];
 //原数组严格递增，对其中一个区间加上一个数后可能会破坏原来整个数组的严格递增性
-//分情况讨论，每次操作最多把数组拆成3个部分
 struct node { //存每个区间的加数情况
     int l, r;
     int add;
 };
 vector<node> temp; //存多出来的区间
 vector<node> vec; //存整个数组所有的加数情况
-//保证每个区间的非严格递增性
-//然后对每个区间二分去找是否有满足条件的
 signed main()
 {
     scanf("%d%d", &n, &k);
