@@ -56,7 +56,7 @@ int main()
     }
     sort(a + 1, a + 1 + 2 * n - 2, cmp);
     for (int i = 1; i <= 2; i++)
-        for (int j = 2 * n - 2; j <= 2 * n - 1; j++) {
+        for (int j = 2 * n - 3; j <= 2 * n - 2; j++) {
             c += a[i].first + a[j].first;
             solve();
             c.clear();
