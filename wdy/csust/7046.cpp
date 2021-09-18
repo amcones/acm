@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <iostream>
+#include <vector>
 using namespace std;
 typedef long long ll;
 const int maxn = 1e7 + 5, inf = 0x3f3f3f3f, mod = 1e9 + 7;
