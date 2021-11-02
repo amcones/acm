@@ -2,6 +2,8 @@
     "files.associations": {
         "*.cpp": "cpp",
         "utility": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "xstring": "cpp",
+        "ostream": "cpp"
     }
 }
