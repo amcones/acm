@@ -1,19 +1,24 @@
-#include <iostream>
-#include <string>
-#include <cstring>
+/***********************************
+// @Author   :   amcones
+// @Problem  :   acw282.cpp
+// @When     :   2021-10-30 14:10:58
+***********************************/
 #include <algorithm>
-#include <queue>
-#include <vector>
-#include <set>
-#include <stack>
 #include <cmath>
+#include <cstring>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <vector>
 using namespace std;
 using ll = long long;
-using PII = pair<ll, ll>;
+using PII = pair<int, int>;
+using PLL = pair<ll, ll>;
 const int maxn = 1e5 + 10;
-const int mod = 1e9 + 7;
-int a[400];
-int dp[400][400];
+int dp[1000][1000];
+int a[1000];
 int main()
 {
     int n;
@@ -22,13 +27,13 @@ int main()
         cin >> a[i], a[i] += a[i - 1];
     for (int len = 2; len <= n; len++)
     {
-        for (int l = 1; l + len - 1 <= n; l++)
+        for (int i = 1; i + len - 1 <= n; i++)
         {
-            int r = l + len - 1;
-            dp[l][r] = 0x3f3f3f3f;
-            for (int i = l; i < r; i++)
+            int j = i + len - 1;
+            dp[i][j] = 0x3f3f3f3f;
+            for (int k = i; k < j; k++)
             {
-                dp[l][r] = min(dp[l][r], dp[l][i] + dp[i + 1][r] + a[r] - a[l - 1]);
+                dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j] + a[j] - a[i - 1]);
             }
         }
     }

@@ -1,7 +1,7 @@
 /***********************************
 // @Author   :   amcones
-// @Problem  :   acw180.cpp
-// @When     :   2021-10-12 17:31:07
+// @Problem  :   A_Luntik_and_Concerts.cpp
+// @When     :   2021-10-24 20:26:24
 ***********************************/
 #include <algorithm>
 #include <cmath>
@@ -19,5 +19,13 @@ using PLL = pair<ll, ll>;
 const int maxn = 1e5 + 10;
 
 int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        ll a, b, c;
+        cin >> a >> b >> c;
+        b <<= 1, c *= 3;
+        cout << (a + b + c) % 2 << endl;
+    }
     return 0;
 }

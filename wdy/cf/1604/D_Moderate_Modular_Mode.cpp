@@ -1,7 +1,7 @@
 /***********************************
 // @Author   :   amcones
-// @Problem  :   acw180.cpp
-// @When     :   2021-10-12 17:31:07
+// @Problem  :   D_Moderate_Modular_Mode.cpp
+// @When     :   2021-10-31 00:10:10
 ***********************************/
 #include <algorithm>
 #include <cmath>
@@ -19,5 +19,18 @@ using PLL = pair<ll, ll>;
 const int maxn = 1e5 + 10;
 
 int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        ll x, y;
+        cin >> x >> y;
+        if (x > y)
+            cout << x + y << endl;
+        else if (!(y % x))
+            cout << x << endl;
+        else {
+            cout << (y - y % x / 2) << endl;
+        }
+    }
     return 0;
 }
