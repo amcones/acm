@@ -1,36 +1,39 @@
-#include <iostream>
-#include <string>
-#include <cstring>
+/***********************************
+// @Author   :   amcones
+// @Problem  :   acw240.cpp
+// @When     :   2021-11-23 17:43:48
+***********************************/
 #include <algorithm>
-#include <queue>
-#include <vector>
-#include <set>
-#include <stack>
 #include <cmath>
-#include <unordered_map>
+#include <cstring>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <vector>
 using namespace std;
 using ll = long long;
-using PII = pair<ll, ll>;
-const int maxn = 2e5 + 5;
-const int mod = 1e9 + 7;
+using PII = pair<int, int>;
+using PLL = pair<ll, ll>;
+const int maxn = 2e5 + 10;
+int ans = 0;
 int fa[maxn];
 int find(int x)
 {
     return fa[x] == x ? x : fa[x] = find(fa[x]);
 }
-void comb(int a, int b)
+void comb(int x, int y)
 {
-    int x = find(a), y = find(b);
-    fa[x] = y;
+    fa[find(x)] = find(y);
 }
-int ans = 0;
 int main()
 {
-    for (int i = 1; i < maxn; i++) //同类，捕食，天敌
+    int n, k;
+    cin >> n >> k;
+    for (int i = 1; i < maxn; i++)
         fa[i] = i;
-    int n, m;
-    cin >> n >> m;
-    while (m--)
+    while (k--)
     {
         int d, x, y;
         cin >> d >> x >> y;
@@ -45,16 +48,16 @@ int main()
                 ans++;
             else
             {
-                comb(x, y), comb(x + n, y + n), comb(x + 2 * n, y + 2 * n);
+                comb(x, y), comb(x + n, y + n), comb(x + n + n, y + n + n);
             }
         }
-        else
+        else if (d == 2)
         {
-            if (x == y || find(x) == find(y) || find(x + n + n) == find(y))
+            if (x == y || find(x) == find(y) || find(x) == find(y + n))
                 ans++;
             else
             {
-                comb(x + n, y), comb(y + n, x + n + n), comb(x, y + n + n);
+                comb(x, y + n + n), comb(x + n, y), comb(x + n + n, y + n);
             }
         }
     }

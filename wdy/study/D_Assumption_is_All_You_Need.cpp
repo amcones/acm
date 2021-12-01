@@ -1,65 +1,60 @@
-#include <iostream>
-#include <string>
-#include <cstring>
+/***********************************
+// @Author   :   amcones
+// @Problem  :   D_Assumption_is_All_You_Need.cpp
+// @When     :   2021-11-17 23:53:02
+***********************************/
 #include <algorithm>
-#include <queue>
-#include <vector>
-#include <set>
-#include <stack>
 #include <cmath>
-#include <unordered_map>
+#include <cstring>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <vector>
 using namespace std;
 using ll = long long;
-using PII = pair<ll, ll>;
+using PII = pair<int, int>;
+using PLL = pair<ll, ll>;
 const int maxn = 3000;
-const int mod = 1e9 + 7;
-int a[maxn], b[maxn], pa[maxn], pb[maxn];
-bool vis[maxn];
-vector<PII> ans;
-int n;
-void solve()
-{
-    memset(vis, 0, sizeof vis);
+int a[maxn], b[maxn];
+int pa[maxn], pb[maxn];
+void solve() {
+    vector<PII> ans;
+    int n;
     cin >> n;
     for (int i = 1; i <= n; i++)
         cin >> a[i], pa[a[i]] = i;
     for (int i = 1; i <= n; i++)
         cin >> b[i], pb[b[i]] = i;
-    for (int i = n; i >= 1; i--) //将i从pa[i]放到pb[i]
-    {
-        if (pa[i] > pb[i])
-        {
-            cout << -1 << endl;
-            return;
-        }
+    for (int i = 1; i <= n; i++) {
         if (pa[i] == pb[i])
             continue;
-        int maxx = 0, maxp = 0;
-        for (int j = pb[i]; j > pa[i]; j--)
-        {
-            if (a[j] > maxx && !vis[a[j]])
-                maxx = a[j], maxp = j;
+        if (pa[i] < pb[i]) {
+            cout << "-1\n";
+            return;
         }
-        swap(a[maxp], a[pa[i]]);
-        ans.push_back({pa[i], maxp});
-        swap(pa[maxx], pa[i]);
-        vis[i] = true;
+        int nowl = pb[i], nowr = pa[i];
+        for (int j = i + 1; j <= n; j++)
+            if (pa[j] >= nowl && pa[j] <= nowr) {
+                ans.push_back({pa[j], nowr});
+                swap(a[pa[j]], a[nowr]);
+                swap(pa[j], nowr);
+            }
     }
+    for (int i = 1; i <= n; i++)
+        if (a[i] != b[i]) {
+            cout << "-1\n";
+            return;
+        }
+    cout << ans.size() << '\n';
+    for (auto x : ans)
+        cout << x.first << ' ' << x.second << '\n';
 }
-int main()
-{
+int main() {
     int t;
     cin >> t;
     while (t--)
-    {
         solve();
-        if (ans.size())
-        {
-            cout << ans.size() << endl;
-            for (auto i : ans)
-                cout << i.first << ' ' << i.second << endl;
-        }
-        ans.clear();
-    }
     return 0;
 }
