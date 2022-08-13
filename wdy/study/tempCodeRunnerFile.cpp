@@ -1,37 +1,34 @@
-#include <iostream>
-#include <string>
-#include <cstring>
+/***********************************
+// @Author   :   amcones
+// @Problem  :   LuoguP1048.cpp
+// @When     :   2021-12-29 18:52:05
+***********************************/
 #include <algorithm>
-#include <queue>
-#include <vector>
-#include <set>
-#include <stack>
 #include <cmath>
+#include <cstring>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <vector>
 using namespace std;
 using ll = long long;
-using PII = pair<ll, ll>;
-const int maxn = 1e5 + 10;
-const int mod = 1e9 + 7;
-int a[400];
-int dp[400][400];
-int main()
-{
-    int n;
-    cin >> n;
-    for (int i = 1; i <= n; i++)
-        cin >> a[i], a[i] += a[i - 1];
-    for (int len = 2; len <= n; len++)
-    {
-        for (int l = 1; l + len - 1 <= n; l++)
-        {
-            int r = l + len - 1;
-            dp[l][r] = 0x3f3f3f3f;
-            for (int i = l; i < r; i++)
-            {
-                dp[l][r] = min(dp[l][r], dp[l][i] + dp[i + 1][r] + a[r] - a[l - 1]);
-            }
+using PII = pair<int, int>;
+using PLL = pair<ll, ll>;
+const int maxn = 1e4 + 10;
+int dp[maxn][maxn];
+int v[maxn], w[maxn];
+int main() {
+    int T, M;
+    cin >> T >> M;
+    for (int i = 1; i <= M; i++)
+        cin >> v[i] >> w[i];
+    for (int i = 1; i <= M; i++) {
+        for (int j = T; j >= v[i]; j--) {
+            dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - v[i]] + w[i]);
         }
     }
-    cout << dp[1][n];
+    cout << dp[M][T];
     return 0;
 }

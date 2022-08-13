@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "*.cpp": "cpp",
+        "random": "cpp",
+        "ostream": "cpp",
+        "iostream": "cpp",
+        "vector": "cpp"
+    }
+}

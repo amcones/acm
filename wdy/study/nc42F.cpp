@@ -1,23 +1,35 @@
 /***********************************
 // @Author   :   amcones
 // @Problem  :   nc42F.cpp
-// @When     :   2021-12-18 11:02:51
+// @When     :   2021-12-18 11:59:31
 ***********************************/
-#include <algorithm>
-#include <cmath>
-#include <cstring>
-#include <iostream>
-#include <map>
-#include <numeric>
-#include <queue>
-#include <set>
-#include <vector>
+#include<iostream>
+#include<cstring>
+#include<cmath>
+#include<algorithm>
+#include<vector>
+#include<queue>
+#include<set>
+#include<map>
+#include<numeric>
 using namespace std;
-using ll = long long;
-using PII = pair<int, int>;
-using PLL = pair<ll, ll>;
-const int maxn = 1e5 + 10;
-int deg[maxn];
+using ll=long long;
+using PII=pair<int,int>;
+using PLL=pair<ll,ll>;
+const int maxn=1e5+10;
+bool st[maxn];
+vector<int> prime;
+void euler(int n)
+{
+    for(int i=2;i<=n;i++){
+        if(!st[i])prime.push_back(i);
+        for(auto j:prime){
+            if(j*i>n)break;
+            st[j*i]=1;
+            if(i%j==0)break;
+        }
+    }
+}
 inline int read() {
     int x = 0, f = 1;
     char ch = getchar();
@@ -32,20 +44,8 @@ inline int read() {
     }
     return x * f;
 }
-int main() {
-    int t = read();
-    while (t--) {
-        memset(deg, 0, sizeof deg);
-        int n = read();
-        ll ans = 0;
-        for (int i = 1; i < n; i++) {
-            deg[read()]++, deg[read()]++;
-        }
-        for (int i = 1; i <= n; i++) {
-            if (deg[i] >= 3)
-                ans += n - 1 - deg[i];
-        }
-        cout << ans << endl;
-    }
+int main()
+{
+    
     return 0;
 }

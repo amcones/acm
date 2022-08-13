@@ -1,0 +1,1 @@
+{"name":"A. Perfect Permutation","group":"Codeforces Round #810 (Div. 2)","url":"https://codeforces.com/contest/1711/problem/A","interactive":false,"memoryLimit":256,"timeLimit":1000,"tests":[{"id":1658714271958,"input":"2\n1\n4","output":"1\n2 1 4 3"}],"input":{"type":"stdin"},"output":{"type":"stdout"},"srcPath":"/Users/jamesamcones/acm/wdy/cf/A_Perfect_Permutation.cpp"}
